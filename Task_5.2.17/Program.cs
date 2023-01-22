@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Task_5._2._15
+namespace Task_5._2._17
 {
     class Program
     {
@@ -34,15 +34,23 @@ namespace Task_5._2._15
 
             return array;
         }
-        static void Main(string[] args)
+        static void ShowArray(int[] arr, bool sorted = false)
         {
-            var array = GetArrayFromConsole(3);
-            var sortedarray = SortArray(array);
-            foreach (var item in sortedarray)
+            if (sorted)
+            {
+                arr = SortArray(arr);
+            }
+            
+            foreach (var item in arr)
             {
                 Console.Write(item + " ");
             }
 
+        }
+        static void Main(string[] args)
+        {
+            var array = GetArrayFromConsole(3);
+            ShowArray(array, true);
 
             Console.ReadLine();
         }
