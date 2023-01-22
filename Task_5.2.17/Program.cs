@@ -49,7 +49,7 @@ namespace Task_5._2._17
         }
         static void Main(string[] args)
         {
-            var array = GetArrayFromConsole(3);
+            var array = GetArrayFromConsole(10);
             ShowArray(array, true);
 
             Console.ReadLine();
