@@ -6,39 +6,45 @@ namespace Task_5._3._13
     {
         static int[] SortArrayDesc(int[] ArrayDesc)
         {
+            var newArrayDesc = new int[ArrayDesc.Length];
+            Array.Copy(ArrayDesc, newArrayDesc, ArrayDesc.Length);
+            
             int temp = 0;
-            for (var i = 0; i < ArrayDesc.Length; i++)
+            for (var i = 0; i < newArrayDesc.Length; i++)
             {
-                for (var j = i + 1; j < ArrayDesc.Length; j++)
+                for (var j = i + 1; j < newArrayDesc.Length; j++)
                 {
-                    if (ArrayDesc[i] < ArrayDesc[j])
+                    if (newArrayDesc[i] < newArrayDesc[j])
                     {
-                        temp = ArrayDesc[i];
-                        ArrayDesc[i] = ArrayDesc[j];
-                        ArrayDesc[j] = temp;
+                        temp = newArrayDesc[i];
+                        newArrayDesc[i] = newArrayDesc[j];
+                        newArrayDesc[j] = temp;
                     }
                 }
             }
-            return ArrayDesc;
+            return newArrayDesc;
         }
 
         static int[] SortArrayAsc(int[] ArrayAsc)
         {
+            var newArrayAsc = new int[ArrayAsc.Length];
+            Array.Copy(ArrayAsc, newArrayAsc, ArrayAsc.Length);
+
             int temp = 0;
-            for (var i = 0; i < ArrayAsc.Length; i++)
+            for (var i = 0; i < newArrayAsc.Length; i++)
             {
-                for (var j = i + 1; j < ArrayAsc.Length; j++)
+                for (var j = i + 1; j < newArrayAsc.Length; j++)
                 {
-                    if (ArrayAsc[i] > ArrayAsc[j])
+                    if (newArrayAsc[i] > newArrayAsc[j])
                     {
-                        temp = ArrayAsc[i];
-                        ArrayAsc[i] = ArrayAsc[j];
-                        ArrayAsc[j] = temp;
+                        temp = newArrayAsc[i];
+                        newArrayAsc[i] = newArrayAsc[j];
+                        newArrayAsc[j] = temp;
                     }
                 }
             }
 
-            return ArrayAsc;
+            return newArrayAsc;
         }
 
         static int[] GetArrayFromConsole(int num)
@@ -53,29 +59,34 @@ namespace Task_5._3._13
 
             return result;
         }
-        
-        static void SortArray(in int arrayCount, bool sorted = false)
-        {
-            if (sorted)
-            {
-                foreach (var item in SortArrayDesc(GetArrayFromConsole(arrayCount)))
-                {
-                    Console.Write(item + " ");
-                }
-                Console.WriteLine();
 
-                foreach (var item in SortArrayAsc(GetArrayFromConsole(arrayCount)))
-                {
-                    Console.Write(item + " ");
-                }
-                Console.WriteLine();
+        static void ShowArray(int[] arr)
+        {
+
+            foreach (var item in arr)
+            {
+                Console.Write(item + " ");
             }
 
+            Console.WriteLine();
+
         }
+
+        static void SortArray(int[] array_to_sort, out int[] sorteddesk, out int[] sortedasc)
+        {
+            sorteddesk = SortArrayDesc(array_to_sort);
+            sortedasc = SortArrayAsc(array_to_sort);
+        }
+
         static void Main(string[] args)
         {
+            var arrayCount = 4;
+            var array = GetArrayFromConsole(arrayCount);
 
-            SortArray(7, true);
+            SortArray(array, out int[] sorteddesk, out int[] sortedasc);
+
+            ShowArray(sorteddesk);
+            ShowArray(sortedasc);
 
             Console.ReadLine();
         }
